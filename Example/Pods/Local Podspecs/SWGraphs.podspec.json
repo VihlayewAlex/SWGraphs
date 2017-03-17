@@ -1,0 +1,22 @@
+{
+  "name": "SWGraphs",
+  "version": "0.1.0",
+  "summary": "A short description of SWGraphs.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/VihlayewAlex/SWGraphs",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "VihlayewAlex": "vihlayew.alex@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/VihlayewAlex/SWGraphs.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SWGraphs/Classes/**/*"
+}

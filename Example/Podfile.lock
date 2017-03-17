@@ -1,0 +1,16 @@
+PODS:
+  - SWGraphs (0.1.0)
+
+DEPENDENCIES:
+  - SWGraphs (from `../`)
+
+EXTERNAL SOURCES:
+  SWGraphs:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SWGraphs: 83592e1560b748309772f2c1758dc627c881221e
+
+PODFILE CHECKSUM: 851c571aee02f5bec2704a9c91e29cb144e5d7a5
+
+COCOAPODS: 1.1.1

@@ -1,0 +1,6 @@
+framework module SWGraphs {
+  umbrella header "SWGraphs-umbrella.h"
+
+  export *
+  module * { export * }
+}

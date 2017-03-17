@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SWGraphs_Example' do
+  pod 'SWGraphs', :path => '../'
+
+  target 'SWGraphs_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
