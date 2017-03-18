@@ -47,22 +47,51 @@ let incidenceMatrix = [ [1,0,-1,1],
                         [0,0,0,-1] ]
 let graph = SWGGraph(with: incidenceMatrix)
 ```
+#### Graph types
+Every graph have it's type, defined as `SWGGraphType`:
+```swift
+public enum SWGGraphType {
+    case Oriented
+    case Unoriented
+}
+```
+Notice that type is get-only property so it can not be changed manually.
+
 ### Edges
 Edges are initialized in graph internaly and must not be initialized manually.
 
-#### Getting edges from graph
+#### Operations with edges 
+
+Getting edges from graph:
 ```swift
 let edges = graph.edges // [SWGEdge]
 ```
+Like a graph types, edges age get-only and can be modified only with functions listed below:
 
-#### Getting start and end vertexes numbers
+Adding edges to graph:
 ```swift
-let startIndex = edge.startVertexNumber // Int
+graph.addEdge(start: 2, end: 3, value: nil) // Adds edge from vertex 2 to 3
+graph.addEdge(start: 16, end: 7, value: 13) // Adds edge from vertex 16 to 7 with value of 13
 ```
 
-#### Getting start and end connections
+Removing edges from graph:
+```swift
+graph.removeEdge(at: 3) // Removes edge with number 3
+graph.removeLastEdge() // Removes last edge
+```
+
+#### Getting edge's vertices and connections
+
+Getting start and end vertices numbers:
+```swift
+let startIndex = edge.startVertexNumber // Int
+let endIndex = edge.endVertexNumber // Int
+```
+
+Getting start and end connections:
 ```swift
 let startConnections = edge.startVertexConnections // [SWGEdge]
+let endConnections = edge.endVertexConnections // [SWGEdge]
 ```
 
 ## Author
