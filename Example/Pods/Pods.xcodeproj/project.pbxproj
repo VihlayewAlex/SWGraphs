@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		29ED031D9F04E4F08B35DF25F4E4899F /* Pods-SWGraphs_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 340DB7DCD276B9F6F3D2EB19081CAA87 /* Pods-SWGraphs_Tests-dummy.m */; };
 		3A99A4611E7A909C008C259B /* SWGEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A99A4601E7A909C008C259B /* SWGEdge.swift */; };
-		3A9D42EF1E7CFE9F00BB134E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D42EE1E7CFE9F00BB134E /* Extensions.swift */; };
+		3A9D42F31E7D670E00BB134E /* SWGVertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D42F21E7D670E00BB134E /* SWGVertex.swift */; };
 		3D400659E34EA4BA826A87E094E8CDF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		47D5B4E15084A619BC02F3735E60D289 /* Pods-SWGraphs_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 313BD462BA23EC22793BAD67B813907D /* Pods-SWGraphs_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E6CB62F939513976F5EDBEBE22B6B13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
@@ -42,7 +42,7 @@
 		340DB7DCD276B9F6F3D2EB19081CAA87 /* Pods-SWGraphs_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SWGraphs_Tests-dummy.m"; sourceTree = "<group>"; };
 		39E3B2AA2E0F4F73D7DE719DDC668E9D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A99A4601E7A909C008C259B /* SWGEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWGEdge.swift; sourceTree = "<group>"; };
-		3A9D42EE1E7CFE9F00BB134E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3A9D42F21E7D670E00BB134E /* SWGVertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWGVertex.swift; sourceTree = "<group>"; };
 		4054FC5CB6573AF86B9C416B49549AF7 /* Pods-SWGraphs_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SWGraphs_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		44C6B0735D818CA2A9A3C0BD58A8AEE3 /* Pods-SWGraphs_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SWGraphs_Example-umbrella.h"; sourceTree = "<group>"; };
 		4D0BAFEC2FB4E3EDD6EEC29AFD72DD8E /* SWGraphs-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWGraphs-prefix.pch"; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			children = (
 				0BB7D59FC1AE23CA0522BFEB2A368974 /* SWGGraph.swift */,
 				3A99A4601E7A909C008C259B /* SWGEdge.swift */,
-				3A9D42EE1E7CFE9F00BB134E /* Extensions.swift */,
+				3A9D42F21E7D670E00BB134E /* SWGVertex.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -357,9 +357,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DAA6E54F70DB6D3F68A0099D918970A /* SWGGraph.swift in Sources */,
+				3A9D42F31E7D670E00BB134E /* SWGVertex.swift in Sources */,
 				80C7B690FE13C3456ED19893BC25C84F /* SWGraphs-dummy.m in Sources */,
 				3A99A4611E7A909C008C259B /* SWGEdge.swift in Sources */,
-				3A9D42EF1E7CFE9F00BB134E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

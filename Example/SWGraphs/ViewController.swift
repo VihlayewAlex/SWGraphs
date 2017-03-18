@@ -18,18 +18,16 @@ class ViewController: UIViewController {
         let matrix = [[1,0,-1,1],[-1,1,0,0],[0,-1,1,0],[0,0,0,-1]]
         
         let graph = SWGGraph(with: matrix)
-        graph.addEdge(start: 2, end: 3, value: nil)
+//        graph.addEdge(start: 2, end: 3, value: nil)
         print(graph.edges)
         print("---")
-        graph.removeLastEdge()
-        print(graph.edges)
-        print("---")
-        graph.removeEdge(at: 0)
-        print(graph.edges)
-        
-
-        
-        
+//        graph.removeLastEdge()
+//        print(graph.edges)
+//        print("---")
+//        graph.removeEdge(number: 1)
+//        print(graph.edges)
+//        print("---\n\n\n---")
+        print(graph.vertexes)
         
         
     }
