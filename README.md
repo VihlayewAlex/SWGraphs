@@ -94,6 +94,47 @@ let startConnections = edge.startVertexConnections // [SWGEdge]
 let endConnections = edge.endVertexConnections // [SWGEdge]
 ```
 
+### Vertices
+Getting vertices from graph:
+```swift
+let vertices = graph.vertexes // [SWGVertex]
+```
+
+Vertex is represented by `SWGVertex`:
+```swift
+public struct SWGVertex: CustomStringConvertible {
+    
+    public var description: String {
+        return "SWGVertex(Number: \(self.number), Connections: [ \(self.connectedVertexes) ])"
+    }
+    
+    public var number: Int
+    public var connectedVertexes: [SWGVertexConnection]
+}
+```
+
+Vertexe's `connectedVertexes` are represented by array of `SWGVertexConnection`:
+```swift
+public struct SWGVertexConnection: CustomStringConvertible {
+    
+    public var description: String {
+        return "(\(self.direction) connection to \(self.connectedToVertex) with value \(self.connectionValue))"
+    }
+    
+    public var direction: SWGVertexConnectionDirection
+    public var connectedToVertex: Int
+    public var connectionValue: Int?
+}
+```
+
+Connection's direction is of type `SWGVertexConnectionDirection`:
+```swift
+public enum SWGVertexConnectionDirection {
+    case In
+    case Out
+}
+```
+
 ## Author
 
 VihlayewAlex, vihlayew.alex@gmail.com
