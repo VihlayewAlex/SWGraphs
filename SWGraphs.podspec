@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SWGraphs'
-  s.version          = '0.2.0'
+  s.version          = '0.2.5'
   s.summary          = 'A Swift library for operations on graphs.'
 
 # This description is used to generate tags and improve search results.
@@ -38,6 +38,6 @@ A Swift library for operations on graphs. This description will be extended.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-    s.frameworks = 'UIKit'
+  # s.frameworks = 'Foundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

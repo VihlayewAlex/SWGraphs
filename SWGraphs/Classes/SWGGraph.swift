@@ -16,7 +16,7 @@ public enum SWGGraphType {
 public class SWGGraph: CustomStringConvertible {
     
     public var description: String {
-        return "Graph(type: \(graphType), edgesCount: \(edges.count))"
+        return "Graph(type: \(graphType), edgesCount: \(graphEdges.count))"
     }
     
     // Graph info
@@ -24,7 +24,10 @@ public class SWGGraph: CustomStringConvertible {
     public var type: SWGGraphType {
         return graphType!
     }
-    public var edges = [SWGEdge]()
+    var graphEdges = [SWGEdge]()
+    public var edges: [SWGEdge] {
+        return graphEdges
+    }
     //public var incidenceMatrix = [[Int]]()
     
     //// Innitializers
@@ -83,7 +86,7 @@ public class SWGGraph: CustomStringConvertible {
                     newEdge = SWGEdge(edgeFor: self, start: startVertex, end: endVertex, index: edgeIndex, value: nil)
                 }
                 
-                self.edges.append(newEdge)
+                self.graphEdges.append(newEdge)
                 
             }
         
@@ -97,22 +100,22 @@ public class SWGGraph: CustomStringConvertible {
     
     public func addEdge(start: Int?, end: Int?, value: Int?) {
         
-        let edge = SWGEdge(edgeFor: self, start: start, end: end, index: edges.count, value: value)
-        self.edges.append(edge)
+        let edge = SWGEdge(edgeFor: self, start: start, end: end, index: graphEdges.count, value: value)
+        self.graphEdges.append(edge)
         
     }
     
     public func removeLastEdge() {
         
-        self.edges.removeLast()
+        self.graphEdges.removeLast()
         
     }
     
     public func removeEdge(at index: Int) {
         
-        self.edges.remove(at: index)
-        for edgeIndex in index..<edges.count {
-            edges[edgeIndex].index -= 1
+        self.graphEdges.remove(at: index)
+        for edgeIndex in index..<graphEdges.count {
+            graphEdges[edgeIndex].index -= 1
         }
         
     }
