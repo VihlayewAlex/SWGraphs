@@ -8,17 +8,26 @@
 
 import UIKit
 
-public class SWGEdge {
+public class SWGEdge: CustomStringConvertible {
     
-    public var startVertex: SWGVertex
-    public var endVertex: SWGVertex
+    public var description: String {
+        return "SWGEdge(startVertex: \(self.startVertexNumber), endVertex: \(self.endVertexNumber), value: \(self.value))"
+    }
     
+    public var parentGraph: SWGGraph
+    public var startVertexNumber: Int?
+    public var endVertexNumber: Int?
     public var value: Int?
     
-    public init(start: SWGVertex, end: SWGVertex, value: Int?) {
+    
+    //// Innitializers
+    
+    public init(edgeFor graph: SWGGraph, start: Int?, end: Int?, value: Int?) {
         
-        self.startVertex = start
-        self.endVertex = end
+        self.parentGraph = graph
+        
+        self.startVertexNumber = start
+        self.endVertexNumber = end
         
         self.value = value
         

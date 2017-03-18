@@ -15,13 +15,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let testVertex1 = SWGVertex(name: "first", number: 1, connectedEdges: [])
-        let testVertex2 = SWGVertex(name: "first", number: 1, connectedEdges: [])
+        let matrix = [[1,0,-1,1],[-1,1,0,0],[0,-1,1,0],[0,0,0,-1]]
         
-        let testEdge = SWGEdge(start: testVertex1, end: testVertex2, value: 3)
-        
-        let graph = SWGGraph(type: .Oriented, vertices: [testVertex1,testVertex2], edges: [testEdge])
-        print(graph)
+        let graph = SWGGraph(with: matrix)
+        print(graph.type!)
+        print(graph.edges)
+        print(graph.edges.count)
         
     }
 
