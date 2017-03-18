@@ -50,14 +50,14 @@ public class SWGGraph: CustomStringConvertible {
                 for (vertexIndex,vertexComponent) in vertex.enumerated() {
                     // Checking for negative relations, setting type if outgoing connection is present
                     if vertexComponent == -1 {
-                        self.type = .Oriented
+                        self.graphType = .Oriented
                     }
                     edgesMatrix[vertexIndex].append(vertexComponent)
                 }
             }
             // Setting type if Oriented is not set during loop check
-            if type == nil {
-                type = .Unoriented
+            if graphType == nil {
+                graphType = .Unoriented
             }
         
         //// END
@@ -73,8 +73,8 @@ public class SWGGraph: CustomStringConvertible {
                 let newEdge: SWGEdge
                 
                 // Checking graph type, initializing edge with edge data
-                if type == .Oriented {
-                    let endVertex = (type == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
+                if graphType == .Oriented {
+                    let endVertex = (graphType == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
                     let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
                     newEdge = SWGEdge(edgeFor: self, start: startVertex, end: endVertex, index: edgeIndex, value: nil)
                 } else {
@@ -102,9 +102,9 @@ public class SWGGraph: CustomStringConvertible {
         
     }
     
-    public func popEdge() {
+    public func removeLastEdge() {
         
-        self.edges.popLast()
+        self.edges.removeLast()
         
     }
     

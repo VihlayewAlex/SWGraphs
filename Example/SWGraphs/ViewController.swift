@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         graph.addEdge(start: 2, end: 3, value: nil)
         print(graph.edges)
         print("---")
-        graph.popEdge()
+        graph.removeLastEdge()
         print(graph.edges)
         print("---")
         graph.removeEdge(at: 0)
