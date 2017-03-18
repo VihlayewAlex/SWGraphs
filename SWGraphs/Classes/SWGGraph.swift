@@ -13,10 +13,19 @@ public enum SWGGraphType {
     case Unoriented
 }
 
-public class SWGGraph {
+public class SWGGraph: CustomStringConvertible {
+    
+    public var description: String {
+        return "Graph(type: \(graphType), edgesCount: \(edges.count))"
+    }
+    
     // Graph info
-    public var type: SWGGraphType?
+    var graphType: SWGGraphType?
+    public var type: SWGGraphType {
+        return graphType!
+    }
     public var edges = [SWGEdge]()
+    //public var incidenceMatrix = [[Int]]()
     
     //// Innitializers
     
@@ -59,19 +68,19 @@ public class SWGGraph {
         
         //// INITIALIZING EDGES AND ADDING THEM TO GRAPH
         
-            for edgeData in edgesMatrix {
+            for (edgeIndex,edgeData) in edgesMatrix.enumerated() {
 
                 let newEdge: SWGEdge
                 
                 // Checking graph type, initializing edge with edge data
                 if type == .Oriented {
-                    let startVertex = (type == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
-                    let endVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
-                    newEdge = SWGEdge(edgeFor: self, start: startVertex, end: endVertex, value: nil)
+                    let endVertex = (type == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
+                    let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
+                    newEdge = SWGEdge(edgeFor: self, start: startVertex, end: endVertex, index: edgeIndex, value: nil)
                 } else {
-                    let startVertex = edgeData.index(of: 1)!
-                    let endVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
-                    newEdge = SWGEdge(edgeFor: self, start: startVertex, end: endVertex, value: nil)
+                    let endVertex = edgeData.index(of: 1)!
+                    let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
+                    newEdge = SWGEdge(edgeFor: self, start: startVertex, end: endVertex, index: edgeIndex, value: nil)
                 }
                 
                 self.edges.append(newEdge)
@@ -84,6 +93,29 @@ public class SWGGraph {
     }
     
     
+    //// Methods
+    
+    public func addEdge(start: Int?, end: Int?, value: Int?) {
+        
+        let edge = SWGEdge(edgeFor: self, start: start, end: end, index: edges.count, value: value)
+        self.edges.append(edge)
+        
+    }
+    
+    public func popEdge() {
+        
+        self.edges.popLast()
+        
+    }
+    
+    public func removeEdge(at index: Int) {
+        
+        self.edges.remove(at: index)
+        for edgeIndex in index..<edges.count {
+            edges[edgeIndex].index -= 1
+        }
+        
+    }
     
     
 }

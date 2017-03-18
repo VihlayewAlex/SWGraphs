@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+extension Int {
+    
+    func alphabetOrderRepresentation() -> Character {
+        let baseScalar = "a".unicodeScalars.first
+        
+        return Character(UnicodeScalar(Int((baseScalar?.value)!) + self)!)
+    }
+    
+}

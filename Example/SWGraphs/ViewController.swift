@@ -18,9 +18,19 @@ class ViewController: UIViewController {
         let matrix = [[1,0,-1,1],[-1,1,0,0],[0,-1,1,0],[0,0,0,-1]]
         
         let graph = SWGGraph(with: matrix)
-        print(graph.type!)
+        graph.addEdge(start: 2, end: 3, value: nil)
         print(graph.edges)
-        print(graph.edges.count)
+        print("---")
+        graph.popEdge()
+        print(graph.edges)
+        print("---")
+        graph.removeEdge(at: 0)
+        print(graph.edges)
+        
+
+        
+        
+        
         
     }
 
