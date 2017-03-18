@@ -28,6 +28,43 @@ it, simply add the following line to your Podfile:
 pod "SWGraphs"
 ```
 
+## Usage
+
+### Import
+Don't forget to add import:
+```swift
+import SWGraphs
+```
+
+### Graphs
+
+#### Initializing with incidence matrix
+More about incidence matrixes on [Wikipedia](https://en.wikipedia.org/wiki/Incidence_matrix).
+```swift
+let incidenceMatrix = [ [1,0,-1,1],
+                        [-1,1,0,0],
+                        [0,-1,1,0],
+                        [0,0,0,-1] ]
+let graph = SWGGraph(with: incidenceMatrix)
+```
+### Edges
+Edges are initialized in graph internaly and must not be initialized manually.
+
+#### Getting edges from graph
+```swift
+let edges = graph.edges // [SWGEdge]
+```
+
+#### Getting start and end vertexes numbers
+```swift
+let startIndex = edge.startVertexNumber // Int
+```
+
+#### Getting start and end connections
+```swift
+let startConnections = edge.startVertexConnections // [SWGEdge]
+```
+
 ## Author
 
 VihlayewAlex, vihlayew.alex@gmail.com
