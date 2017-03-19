@@ -135,6 +135,11 @@ public enum SWGVertexConnectionDirection {
 }
 ```
 
+Getting distance between two vertices:
+```swift
+graph.lengthInGraph(from: 3, to: 4) // Double
+```
+
 ## Author
 
 VihlayewAlex, vihlayew.alex@gmail.com
