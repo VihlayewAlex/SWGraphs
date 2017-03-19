@@ -155,6 +155,14 @@ public enum SWGVertexConnectionDirection {
 
 #### Vertices info and methods
 
+Vertices types:
+```swift
+vertex.isLeaf // Bool
+vertex.isSink // Bool
+vertex.isSource // Bool
+vertex.isIsolated // Bool
+```
+
 Getting distance between two vertices:
 ```swift
 graph.lengthInGraph(from: 3, to: 4) // Double
