@@ -27,7 +27,12 @@ class ViewController: UIViewController {
 //        graph.removeEdge(number: 1)
 //        print(graph.edges)
 //        print("---\n\n\n---")
-        print(graph.vertexes)
+        print(graph.getSubvertexesNumbersForVertex(number: 1))
+        print(graph.getSubvertexesNumbersForVertex(number: 2))
+        print(graph.getSubvertexesNumbersForVertex(number: 3))
+        print(graph.getSubvertexesNumbersForVertex(number: 4))
+        print("---")
+        print(graph.lengthInGraph(from: 3, to: 4))
         
         
     }

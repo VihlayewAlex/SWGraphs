@@ -18,7 +18,7 @@ public class SWGEdge: CustomStringConvertible {
     public var startVertexNumber: Int
     public var endVertexNumber: Int
     public var number: Int
-    public var value: Int?
+    public var value: Double
     //public var type: SWGEdgeType
     
     public var startVertexConnections: [SWGEdge] {
@@ -33,7 +33,7 @@ public class SWGEdge: CustomStringConvertible {
     
     //// Innitializers
     
-    public init(edgeFor graph: SWGGraph, start: Int, end: Int, number: Int, value: Int?) {
+    public init(edgeFor graph: SWGGraph, start: Int, end: Int, number: Int, value: Double) {
         
         self.parentGraph = graph
         

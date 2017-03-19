@@ -31,7 +31,7 @@ public class SWGGraph: CustomStringConvertible {
     }
     public var vertexes: [SWGVertex] {
         
-        var vertexes = [SWGVertex]()
+        var vertexesArr = [SWGVertex]()
         for edge in edges {
             
             // Start
@@ -58,7 +58,7 @@ public class SWGGraph: CustomStringConvertible {
             }
             
             let startVertex = SWGVertex(number: edge.startVertexNumber, connectedVertexes: startConnections)
-            vertexes.append(startVertex)
+            vertexesArr.append(startVertex)
             
             // End
 
@@ -85,16 +85,86 @@ public class SWGGraph: CustomStringConvertible {
             }
             
             let endVertex = SWGVertex(number: edge.endVertexNumber, connectedVertexes: endConnections)
-            vertexes.append(endVertex)
+            vertexesArr.append(endVertex)
             
         }
         
+        var unique = Set<Int>()
+        var uniqueVertexesArray = [SWGVertex]()
+        for (vertexIndex, vertex) in vertexesArr.enumerated() {
+            if !(unique.contains(vertex.number)) {
+                uniqueVertexesArray.append(vertex)
+                unique.insert(vertex.number)
+            }
+        }
+        uniqueVertexesArray.sort(by: { $0.number < $1.number })
         
         
-        return vertexes
+        return uniqueVertexesArray
     }
     
-    //public var incidenceMatrix = [[Int]]()
+    public func getSubvertexesNumbersForVertex(number: Int) -> [Int] {
+        return (vertexes.filter({ $0.number == number })).first!.connectedVertexesNumbers
+    }
+    public func getConnectionsForVertex(number: Int) -> [SWGVertexConnection] {
+        return (vertexes.filter({ $0.number == number })).first!.connectedVertexes
+    }
+    
+    public func lengthInGraph(from first_number: Int, to second_number: Int) -> Int {
+        // Defining indexes
+        let first_index = first_number - 1
+        let second_index = second_number - 1
+        
+        var W = [[Double]]()
+        for i in 0..<vertexes.count {
+            var subarray = [Double]()
+            for j in 0..<vertexes.count {
+                subarray.append(0)
+            }
+            W.append(subarray)
+        }
+        
+        for i in 0..<vertexes.count {
+            for j in 0..<vertexes.count {
+                
+                var intersection = false
+                var value: Double = Double.infinity
+                
+                let connections = vertexes[i].connectedVertexesNumbers
+                let destinationVertexNumber = vertexes[j].number
+                
+                
+                    if connections.contains(destinationVertexNumber) {
+                        intersection = true
+                        value = vertexes[i].connectedVertexes.filter({ $0.connectedToVertex == destinationVertexNumber }).first!.connectionValue
+                    }
+                
+                
+                if intersection {
+                    W[i][j] = value
+                } else {
+                    W[i][j] = Double.infinity
+                }
+                
+            }
+        }
+        
+        
+        for k in 0..<vertexes.count {
+            for i in 0..<vertexes.count {
+                for j in 0..<vertexes.count {
+                    W[i][j] = min(W[i][j], W[i][k] + W[k][j])
+                }
+            }
+        }
+        
+
+        
+        return Int(W[first_index][second_index])
+    }
+    
+    
+    
     
     //// Innitializers
     
@@ -145,11 +215,11 @@ public class SWGGraph: CustomStringConvertible {
                 if graphType == .Oriented {
                     let endVertex = (graphType == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
                     let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
-                    newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex! + 1, number: edgeNumber + 1, value: nil)
+                    newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex! + 1, number: edgeNumber + 1, value: 1)
                 } else {
                     let endVertex = edgeData.index(of: 1)!
                     let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
-                    newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex + 1, number: edgeNumber + 1, value: nil)
+                    newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex + 1, number: edgeNumber + 1, value: 1)
                 }
                 
                 self.graphEdges.append(newEdge)
@@ -164,7 +234,7 @@ public class SWGGraph: CustomStringConvertible {
     
     //// Methods
     
-    public func addEdge(start: Int, end: Int, value: Int?) {
+    public func addEdge(start: Int, end: Int, value: Double) {
         
         let edge = SWGEdge(edgeFor: self, start: start, end: end, number: graphEdges.count, value: value)
         self.graphEdges.append(edge)
