@@ -181,6 +181,47 @@ public class SWGGraph: CustomStringConvertible {
         return eccentricity
     }
     
+    public var graphDiameter: Double {
+        
+        var maxDiameter = 0.0
+        
+        for first_vertex_index in 0..<vertexes.count {
+            for second_vertex_index in 0..<vertexes.count {
+                let currentLength = lengthInGraph(from: first_vertex_index + 1, to: second_vertex_index + 1)
+                if currentLength > maxDiameter {
+                    maxDiameter = currentLength
+                }
+            }
+        }
+        
+        return maxDiameter
+    }
+    
+    public var graphRadius: Double {
+        
+        var radius = getEccentricity(forVertex: 1)
+        
+        for vertex in 1..<vertexes.count {
+            radius = min(getEccentricity(forVertex: vertex), radius)
+        }
+        
+        return radius
+    }
+    
+    public var centers: [Int] {
+        
+        var centers = [Int]()
+        
+        for vertex in 1...vertexes.count {
+            if getEccentricity(forVertex: vertex) == graphRadius {
+                centers.append(vertex)
+            }
+        }
+        
+        return centers
+    }
+    
+    
     
     //// Innitializers
     
