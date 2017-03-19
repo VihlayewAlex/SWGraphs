@@ -95,6 +95,8 @@ let endConnections = edge.endVertexConnections // [SWGEdge]
 ```
 
 ### Vertices
+
+#### Getting vertices
 Getting vertices from graph:
 ```swift
 let vertices = graph.vertexes // [SWGVertex]
@@ -134,6 +136,8 @@ public enum SWGVertexConnectionDirection {
     case Out
 }
 ```
+
+#### Vertices info and methods
 
 Getting distance between two vertices:
 ```swift
