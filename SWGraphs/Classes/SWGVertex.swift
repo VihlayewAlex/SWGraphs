@@ -19,6 +19,24 @@ public struct SWGVertex: CustomStringConvertible {
     public var connectedVertexesNumbers: [Int] {
         return connectedVertexes.map{ $0.connectedToVertex }
     }
+    
+    // Vertex parameters
+    public var isIsolated: Bool {
+        return connectedVertexes.isEmpty
+    }
+    
+    public var isLeaf: Bool {
+        return (connectedVertexes.count == 1)
+    }
+    
+    public var isSource: Bool {
+        return (connectedVertexes.filter({ $0.direction == .Out }).count == connectedVertexes.count)
+    }
+    
+    public var isSink: Bool {
+        return (connectedVertexes.filter({ $0.direction == .In }).count == connectedVertexes.count)
+    }
+    
 }
 
 public enum SWGVertexConnectionDirection {

@@ -37,6 +37,11 @@ class ViewController: UIViewController {
         print(graph.graphRadius)
         print(graph.graphDiameter)
         print(graph.centers)
+        print("---")
+        print(graph.vertexes.first!.isLeaf)
+        print(graph.vertexes.first!.isSink)
+        print(graph.vertexes.first!.isSource)
+        print(graph.vertexes.first!.isIsolated)
         
         
     }
