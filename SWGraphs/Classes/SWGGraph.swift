@@ -169,7 +169,7 @@ public class SWGGraph: CustomStringConvertible {
         
         var eccentricity = 0.0
         
-        for vertex in 0..<vertexes.count {
+        for vertex in 1...vertexes.count {
             if vertex != number {
                 let newEcc = lengthInGraph(from: number, to: vertex)
                 if newEcc > eccentricity {

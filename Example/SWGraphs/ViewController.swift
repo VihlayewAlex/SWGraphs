@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         print(graph.getSubvertexesNumbersForVertex(number: 4))
         print("---")
         print(graph.lengthInGraph(from: 3, to: 4))
+        print(graph.getEccentricity(forVertex: 3))
         
         
     }
