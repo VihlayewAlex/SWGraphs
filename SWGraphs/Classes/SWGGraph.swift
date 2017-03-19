@@ -91,7 +91,7 @@ public class SWGGraph: CustomStringConvertible {
         
         var unique = Set<Int>()
         var uniqueVertexesArray = [SWGVertex]()
-        for (vertexIndex, vertex) in vertexesArr.enumerated() {
+        for vertex in vertexesArr {
             if !(unique.contains(vertex.number)) {
                 uniqueVertexesArray.append(vertex)
                 unique.insert(vertex.number)
@@ -116,9 +116,9 @@ public class SWGGraph: CustomStringConvertible {
         let second_index = second_number - 1
         
         var W = [[Double]]()
-        for i in 0..<vertexes.count {
+        for _ in 0..<vertexes.count {
             var subarray = [Double]()
-            for j in 0..<vertexes.count {
+            for _ in 0..<vertexes.count {
                 subarray.append(0)
             }
             W.append(subarray)
