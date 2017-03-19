@@ -29,6 +29,7 @@ public class SWGGraph: CustomStringConvertible {
     public var edges: [SWGEdge] {
         return graphEdges
     }
+    
     public var vertexes: [SWGVertex] {
         
         var vertexesArr = [SWGVertex]()
@@ -106,11 +107,12 @@ public class SWGGraph: CustomStringConvertible {
     public func getSubvertexesNumbersForVertex(number: Int) -> [Int] {
         return (vertexes.filter({ $0.number == number })).first!.connectedVertexesNumbers
     }
+    
     public func getConnectionsForVertex(number: Int) -> [SWGVertexConnection] {
         return (vertexes.filter({ $0.number == number })).first!.connectedVertexes
     }
     
-    public func lengthInGraph(from first_number: Int, to second_number: Int) -> Int {
+    public func lengthInGraph(from first_number: Int, to second_number: Int) -> Double {
         // Defining indexes
         let first_index = first_number - 1
         let second_index = second_number - 1
@@ -160,10 +162,24 @@ public class SWGGraph: CustomStringConvertible {
         
 
         
-        return Int(W[first_index][second_index])
+        return W[first_index][second_index]
     }
     
-    
+    public func getEccentricity(forVertex number: Int) -> Double {
+        
+        var eccentricity = 0.0
+        
+        for vertex in 0..<vertexes.count {
+            if vertex != number {
+                let newEcc = lengthInGraph(from: number, to: vertex)
+                if newEcc > eccentricity {
+                    eccentricity = newEcc
+                }
+            }
+        }
+        
+        return eccentricity
+    }
     
     
     //// Innitializers
