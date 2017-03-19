@@ -57,6 +57,22 @@ public enum SWGGraphType {
 ```
 Notice that type is get-only property so it can not be changed manually.
 
+#### Graph properties
+Radius:
+```swift
+graph.graphRadius // Double
+```
+
+Diameter:
+```swift
+graph.graphDiameter // Double
+```
+
+Centers:
+```swift
+graph.centers // [Int]
+```
+
 ### Edges
 Edges are initialized in graph internaly and must not be initialized manually.
 
