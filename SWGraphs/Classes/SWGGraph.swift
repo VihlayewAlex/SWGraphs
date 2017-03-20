@@ -165,6 +165,31 @@ public class SWGGraph: CustomStringConvertible {
         return W[first_index][second_index]
     }
     
+    private var discoveredVertices = [SWGVertex]()
+    public func getDFSvertexes(fromVertex number: Int) -> [SWGVertex] {
+    
+        discoveredVertices.removeAll()
+    
+        discoveredVertices.append(vertexes[number - 1])
+        
+        return DFS(fromVertex: number)
+
+    }
+    private func DFS(fromVertex number: Int) -> [SWGVertex] {
+        
+        for subvertex in getSubvertexesNumbersForVertex(number: number) {
+            if !(discoveredVertices.map({ $0.number }).contains(subvertex)) {
+                discoveredVertices.append(vertexes[subvertex - 1])
+                DFS(fromVertex: subvertex)
+            }
+        }
+        
+        return discoveredVertices
+    }
+    
+    
+   
+    
     public func getEccentricity(forVertex number: Int) -> Double {
         
         var eccentricity = 0.0

@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         print(graph.vertexes[4].isSink)
         print(graph.vertexes.first!.isSource)
         print(graph.vertexes.first!.isIsolated)
+        print(graph.getDFSvertexes(fromVertex: 2).map({ $0.number }))
         
         
     }
