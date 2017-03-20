@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         print(graph.vertexes.first!.isSource)
         print(graph.vertexes.first!.isIsolated)
         print(graph.getDFSvertexes(fromVertex: 2).map({ $0.number }))
-        
+        print(graph.getBFSvertexes(fromVertex: 2).map({ $0.number }))
         
     }
 

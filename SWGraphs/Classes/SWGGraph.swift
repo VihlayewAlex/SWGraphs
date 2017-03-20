@@ -180,14 +180,43 @@ public class SWGGraph: CustomStringConvertible {
         for subvertex in getSubvertexesNumbersForVertex(number: number) {
             if !(discoveredVertices.map({ $0.number }).contains(subvertex)) {
                 discoveredVertices.append(vertexes[subvertex - 1])
-                DFS(fromVertex: subvertex)
+                _ = DFS(fromVertex: subvertex)
             }
         }
         
         return discoveredVertices
     }
     
-    
+    public func getBFSvertexes(fromVertex number: Int) -> [SWGVertex] {
+        
+        var queue = [SWGVertex]()
+        var visited = [SWGVertex]()
+        
+        queue.append(vertexes[number - 1])
+        visited.append(vertexes[number - 1])
+        
+        while !(queue.isEmpty) {
+            
+            let vertex = queue[0]
+            queue.remove(at: 0)
+            
+            if visited.count == vertexes.count {
+                return visited
+            }
+            
+            if queue.count == 0 {
+                for node in getSubvertexesNumbersForVertex(number: vertex.number) {
+                    if !(visited.map({ $0.number }).contains(node)) && !(queue.map({ $0.number }).contains(node)) {
+                        queue.append(vertexes[node - 1])
+                        visited.append(vertexes[node - 1])
+                    }
+                }
+            }
+        }
+        
+        return visited
+    }
+
    
     
     public func getEccentricity(forVertex number: Int) -> Double {
