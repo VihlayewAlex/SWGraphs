@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let matrix = [[1,0,-1,1],[-1,1,0,0],[0,-1,1,0],[0,0,0,-1]]
+        let matrix = [[1,1,-1,0,0,0,0,0],[-1,0,0,1,0,1,0,0],[0,-1,0,0,1,0,0,0],[0,0,1,-1,-1,0,1,1],[0,0,0,0,0,-1,-1,0]]
         
         let graph = SWGGraph(with: matrix)
 //        graph.addEdge(start: 2, end: 3, value: nil)
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         print(graph.centers)
         print("---")
         print(graph.vertexes.first!.isLeaf)
-        print(graph.vertexes.first!.isSink)
+        print(graph.vertexes[4].isSink)
         print(graph.vertexes.first!.isSource)
         print(graph.vertexes.first!.isIsolated)
         

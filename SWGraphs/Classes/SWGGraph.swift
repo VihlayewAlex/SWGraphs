@@ -270,13 +270,23 @@ public class SWGGraph: CustomStringConvertible {
                 
                 // Checking graph type, initializing edge with edge data
                 if graphType == .Oriented {
-                    let endVertex = (graphType == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
-                    let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
-                    newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex! + 1, number: edgeNumber + 1, value: 1)
+                    if edgeData.filter({ $0 != 0 }).count == 1 {
+                        let vertexIndex = edgeData.index(of: 1)! + 1
+                        newEdge = SWGEdge(edgeFor: self, start: vertexIndex, end: vertexIndex, number: edgeNumber + 1, value: 1)
+                    } else {
+                        let endVertex = (graphType == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
+                        let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
+                        newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex! + 1, number: edgeNumber + 1, value: 1)
+                    }
                 } else {
-                    let endVertex = edgeData.index(of: 1)!
-                    let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
-                    newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex + 1, number: edgeNumber + 1, value: 1)
+                    if edgeData.filter({ $0 != 0 }).count == 1 {
+                        let vertexIndex = edgeData.index(of: 2)
+                        newEdge = SWGEdge(edgeFor: self, start: vertexIndex!, end: vertexIndex!, number: edgeNumber + 1, value: 1)
+                    } else {
+                        let endVertex = edgeData.index(of: 1)! + 1
+                        let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
+                        newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex + 1, number: edgeNumber + 1, value: 1)
+                    }
                 }
                 
                 self.graphEdges.append(newEdge)
