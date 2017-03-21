@@ -165,6 +165,68 @@ public class SWGGraph: CustomStringConvertible {
         return W[first_index][second_index]
     }
     
+    
+    
+    
+    
+    public func getLengthsMatrix() -> [[Double]] {
+        // Defining indexes
+        
+        
+        var W = [[Double]]()
+        for _ in 0..<vertexes.count {
+            var subarray = [Double]()
+            for _ in 0..<vertexes.count {
+                subarray.append(0)
+            }
+            W.append(subarray)
+        }
+        
+        for i in 0..<vertexes.count {
+            for j in 0..<vertexes.count {
+                
+                var intersection = false
+                var value: Double = Double.infinity
+                
+                let connections = vertexes[i].connectedVertexesNumbers
+                let destinationVertexNumber = vertexes[j].number
+                
+                
+                if connections.contains(destinationVertexNumber) {
+                    intersection = true
+                    value = vertexes[i].connectedVertexes.filter({ $0.connectedToVertex == destinationVertexNumber }).first!.connectionValue
+                }
+                
+                
+                if intersection {
+                    W[i][j] = value
+                } else {
+                    W[i][j] = Double.infinity
+                }
+                
+            }
+        }
+        
+        
+        for k in 0..<vertexes.count {
+            for i in 0..<vertexes.count {
+                for j in 0..<vertexes.count {
+                    W[i][j] = min(W[i][j], W[i][k] + W[k][j])
+                }
+            }
+        }
+        
+        
+        
+        return W
+    }
+    
+    public func getAvailabilityMatrix() -> [[Double]] {
+        return getLengthsMatrix().map({ $0.map({ if $0 != 0 { return 1.0 } else { return 0 } }) })
+    }
+    
+    
+    
     private var discoveredVertices = [SWGVertex]()
     public func getDFSvertexes(fromVertex number: Int) -> [SWGVertex] {
     

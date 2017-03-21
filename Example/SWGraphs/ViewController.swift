@@ -15,7 +15,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let matrix = [[1,1,-1,0,0,0,0,0],[-1,0,0,1,0,1,0,0],[0,-1,0,0,1,0,0,0],[0,0,1,-1,-1,0,1,1],[0,0,0,0,0,-1,-1,0]]
+        let matrix = [[1,1,-1,0,0,0,0,0],
+                      [-1,0,0,1,0,1,0,0],
+                      [0,-1,0,0,1,0,0,0],
+                      [0,0,1,-1,-1,0,1,1],
+                      [0,0,0,0,0,-1,-1,0]]
         
         let graph = SWGGraph(with: matrix)
 //        graph.addEdge(start: 2, end: 3, value: nil)
@@ -34,16 +38,29 @@ class ViewController: UIViewController {
 //        print("---")
 //        print(graph.lengthInGraph(from: 3, to: 4))
 //        print(graph.getEccentricity(forVertex: 3))
-        print(graph.graphRadius)
-        print(graph.graphDiameter)
-        print(graph.centers)
-        print("---")
-        print(graph.vertexes.first!.isLeaf)
-        print(graph.vertexes[4].isSink)
-        print(graph.vertexes.first!.isSource)
-        print(graph.vertexes.first!.isIsolated)
-        print(graph.getDFSvertexes(fromVertex: 2).map({ $0.number }))
-        print(graph.getBFSvertexes(fromVertex: 2).map({ $0.number }))
+//        print(graph.graphRadius)
+//        print(graph.graphDiameter)
+//        print(graph.centers)
+//        print("---")
+//        print(graph.vertexes.first!.isLeaf)
+//        print(graph.vertexes[4].isSink)
+//        print(graph.vertexes.first!.isSource)
+//        print(graph.vertexes.first!.isIsolated)
+//        print("DFS:")
+//        print(graph.getDFSvertexes(fromVertex: 2))
+//        print("DFS (simplified):")
+//        print(graph.getDFSvertexes(fromVertex: 2).map({ $0.number }))
+//        print("---------")
+//        print("BFS:")
+//        print(graph.getBFSvertexes(fromVertex: 2))
+//        print("BFS (simplified):")
+//        print(graph.getBFSvertexes(fromVertex: 2).map({ $0.number }))
+        print("Lengths:")
+        print(graph.getLengthsMatrix())
+        print("---------")
+        print("Availability:")
+        print(graph.getAvailabilityMatrix())
+        
         
     }
 
