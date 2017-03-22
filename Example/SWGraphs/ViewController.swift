@@ -15,15 +15,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let matrix = [[1,1,-1,0,0,0,0,0],
+        /*let matrix = [[1,1,-1,0,0,0,0,0],
                       [-1,0,0,1,0,1,0,0],
                       [0,-1,0,0,1,0,0,0],
                       [0,0,1,-1,-1,0,1,1],
-                      [0,0,0,0,0,-1,-1,0]]
+                      [0,0,0,0,0,-1,-1,0]] */
+        let matrix = [ [1,-1,0,0,0,0],
+                       [-1,0,0,0,0,1],
+                       [0,0,0,1,1,0],
+                       [0,0,0,0,-1,-1],
+                       [0,0,-1,-1,0,0],
+                       [0,1,1,0,0,0] ]
         
         let graph = SWGGraph(with: matrix)
 //        graph.addEdge(start: 2, end: 3, value: nil)
-        print(graph.edges)
+//        print(graph.edges)
         print("---")
 //        graph.removeLastEdge()
 //        print(graph.edges)
@@ -55,11 +61,12 @@ class ViewController: UIViewController {
 //        print(graph.getBFSvertexes(fromVertex: 2))
 //        print("BFS (simplified):")
 //        print(graph.getBFSvertexes(fromVertex: 2).map({ $0.number }))
-        print("Lengths:")
-        print(graph.getLengthsMatrix())
-        print("---------")
-        print("Availability:")
-        print(graph.getAvailabilityMatrix())
+//        print("Lengths:")
+//        print(graph.getLengthsMatrix())
+//        print("---------")
+//        print("Availability:")
+//        print(graph.getAvailabilityMatrix())
+        print(graph.getTopologicalSortVertexes(fromVertex: 4))
         
         
     }

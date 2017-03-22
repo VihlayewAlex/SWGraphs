@@ -279,7 +279,46 @@ public class SWGGraph: CustomStringConvertible {
         return visited
     }
 
-   
+    
+    var color = [Int]()
+    var cyclic = false;
+    var topSort = [Int]();
+    public func getTopologicalSortVertexes(fromVertex number: Int) -> [Int] {
+        
+
+        color = [Int](repeating: 0, count: vertexes.count)
+        topSortFunc(fromVertex: number)
+        
+        return topSort
+        
+    }
+    public func topSortFunc(fromVertex number: Int) {
+        
+        print(number)
+        if color[number - 1] == 2 {
+            return
+        }
+        if cyclic {
+            return
+        }
+        if color[number - 1] == 1 {
+            cyclic = true
+            return
+        }
+        color[number - 1] = 1
+        for vertex in getConnectionsForVertex(number: number).filter({ $0.direction == .In }).map({ $0.connectedToVertex }) {
+            topSortFunc(fromVertex: vertex)
+            if cyclic == true {
+                return
+            }
+        }
+        color[number - 1] = 2
+        topSort.append(number)
+        
+    }
+
+
+    
     
     public func getEccentricity(forVertex number: Int) -> Double {
         
@@ -373,9 +412,6 @@ public class SWGGraph: CustomStringConvertible {
             }
         
         //// END
-        
-        // Edges matrix ready to process
-        debugPrint(edgesMatrix)
         
         
         //// INITIALIZING EDGES AND ADDING THEM TO GRAPH
