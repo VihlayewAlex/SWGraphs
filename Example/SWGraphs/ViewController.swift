@@ -61,12 +61,22 @@ class ViewController: UIViewController {
 //        print(graph.getBFSvertexes(fromVertex: 2))
 //        print("BFS (simplified):")
 //        print(graph.getBFSvertexes(fromVertex: 2).map({ $0.number }))
+        print("DFS:")
+        print(graph.getDFSvertexes(fromVertex: 2))
+        print("DFS (simplified):")
+        print(graph.getDFSvertexes(fromVertex: 2).map({ $0.number }))
+        print("---------")
+        print("BFS:")
+        print(graph.getBFSvertexes(fromVertex: 2))
+        print("BFS (simplified):")
+        print(graph.getBFSvertexes(fromVertex: 2).map({ $0.number }))
 //        print("Lengths:")
 //        print(graph.getLengthsMatrix())
 //        print("---------")
 //        print("Availability:")
 //        print(graph.getAvailabilityMatrix())
         print(graph.getTopologicalSortVertexes(fromVertex: 4))
+
         
         
     }

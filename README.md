@@ -73,6 +73,31 @@ Centers:
 graph.centers // [Int]
 ```
 
+Availability matrix:
+```swift
+graph.getAvailabilityMatrix() // [[Int]]
+```
+
+Lengthы matrix:
+```swift
+graph.getLengthsMatrix() // [[Int]]
+```
+
+
+#### Graph sorting:
+
+DFS:
+```swift
+graph.getDFSvertexes(fromVertex: 2) // [SWGVertex]
+```
+
+BFS:
+```swift
+graph.getBFSvertexes(fromVertex: 2) // [SWGVertex]
+```
+
+
+
 ### Edges
 Edges are initialized in graph internaly and must not be initialized manually.
 
