@@ -281,13 +281,20 @@ public class SWGGraph: CustomStringConvertible {
 
     
     var color = [Int]()
-    var cyclic = false;
-    var topSort = [Int]();
-    public func getTopologicalSortVertexes(fromVertex number: Int) -> [Int] {
-        
+    var cyclic = false
+    var topSort = [Int]()
+    var firstRun = true
+    public func getTopologicalSortVertexes(fromVertex withNumber: Int) -> [Int] {
+        var number = withNumber
 
         color = [Int](repeating: 0, count: vertexes.count)
-        topSortFunc(fromVertex: number)
+        repeat {
+            if !firstRun {
+                number = color.index(of: 0)! + 1
+            }
+            topSortFunc(fromVertex: number)
+            firstRun = false
+        } while color.filter({ $0 == 0 }).count != 0
         
         return topSort
         
@@ -306,14 +313,14 @@ public class SWGGraph: CustomStringConvertible {
             return
         }
         color[number - 1] = 1
-        for vertex in getConnectionsForVertex(number: number).filter({ $0.direction == .In }).map({ $0.connectedToVertex }) {
+        for vertex in getConnectionsForVertex(number: number).filter({ $0.direction == .Out }).map({ $0.connectedToVertex }) {
             topSortFunc(fromVertex: vertex)
             if cyclic == true {
                 return
             }
         }
         color[number - 1] = 2
-        topSort.append(number)
+        topSort.insert(number, at: 0)
         
     }
 
@@ -426,9 +433,9 @@ public class SWGGraph: CustomStringConvertible {
                         let vertexIndex = edgeData.index(of: 1)! + 1
                         newEdge = SWGEdge(edgeFor: self, start: vertexIndex, end: vertexIndex, number: edgeNumber + 1, value: 1)
                     } else {
-                        let endVertex = (graphType == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
-                        let startVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
-                        newEdge = SWGEdge(edgeFor: self, start: startVertex + 1, end: endVertex! + 1, number: edgeNumber + 1, value: 1)
+                        let startVertex = (graphType == .Oriented ? edgeData.index(of: -1) : edgeData.index(of: 1))
+                        let endVertex = Int(edgeData.count - 1 - edgeData.reversed().index(of: 1)!)
+                        newEdge = SWGEdge(edgeFor: self, start: startVertex! + 1, end: endVertex + 1, number: edgeNumber + 1, value: 1)
                     }
                 } else {
                     if edgeData.filter({ $0 != 0 }).count == 1 {

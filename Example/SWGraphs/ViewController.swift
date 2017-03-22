@@ -35,7 +35,7 @@ class ViewController: UIViewController {
 //        print(graph.edges)
 //        print("---")
 //        graph.removeEdge(number: 1)
-//        print(graph.edges)
+        print(graph.edges)
 //        print("---\n\n\n---")
 //        print(graph.getSubvertexesNumbersForVertex(number: 1))
 //        print(graph.getSubvertexesNumbersForVertex(number: 2))
@@ -75,6 +75,7 @@ class ViewController: UIViewController {
 //        print("---------")
 //        print("Availability:")
 //        print(graph.getAvailabilityMatrix())
+        print("Topological sort:")
         print(graph.getTopologicalSortVertexes(fromVertex: 4))
 
         
